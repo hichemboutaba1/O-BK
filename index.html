@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'BK — L'art du Burger & du Kebab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --g1: #04110a;
+            --g2: #0a2318;
+            --g3: #123d28;
+            --g4: #1a5235;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --white: #ffffff;
+            --white-60: rgba(255,255,255,0.6);
+            --white-40: rgba(255,255,255,0.4);
+            --white-10: rgba(255,255,255,0.07);
+            --gold-10: rgba(201,168,76,0.1);
+            --gold-30: rgba(201,168,76,0.3);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at top left, var(--g3) 0%, var(--g1) 40%, var(--g2) 70%, var(--g4) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 60px;
+            background: linear-gradient(to bottom, rgba(4,17,10,0.9) 0%, transparent 100%);
+            backdrop-filter: blur(8px);
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--white);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 48px; list-style: none; }
+        .nav-links a {
+            color: var(--white-60);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color .3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 120px 40px 80px;
+            overflow: hidden;
+        }
+        .hero-glow {
+            position: absolute;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(26,82,53,0.45) 0%, transparent 65%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: glow 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes glow {
+            0%,100% { opacity: .6; transform: translate(-50%,-50%) scale(1); }
+            50%      { opacity: 1;  transform: translate(-50%,-50%) scale(1.15); }
+        }
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--gold-30);
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            padding: 9px 28px;
+            margin-bottom: 36px;
+            position: relative;
+            animation: fadeUp .8s ease both;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(80px, 18vw, 160px);
+            font-weight: 900;
+            line-height: .88;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+            position: relative;
+            animation: fadeUp .8s .15s ease both;
+        }
+        .hero-title .apos { color: var(--gold); }
+        .hero-sub {
+            font-size: 13px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--white-40);
+            margin-bottom: 56px;
+            position: relative;
+            animation: fadeUp .8s .3s ease both;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            animation: fadeUp .8s .45s ease both;
+        }
+        .btn {
+            padding: 15px 42px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all .3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-gold { background: var(--gold); color: var(--g1); }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--white);
+            background: transparent;
+        }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 36px; left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--white-40);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: bounce 2.2s infinite;
+        }
+        .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--white-40), transparent); }
+        @keyframes bounce {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50%      { transform: translateX(-50%) translateY(9px); }
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            max-width: 300px;
+            margin: 0 auto 20px;
+        }
+        .divider-line { flex: 1; height: 1px; background: var(--gold-30); }
+        .divider-dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+
+        /* ── SECTION HEADER ── */
+        .section-tag {
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 6vw, 58px);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .section-title em { font-style: italic; color: var(--gold); }
+        .text-center { text-align: center; }
+
+        /* ── PHILOSOPHY ── */
+        .philosophy {
+            padding: 130px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center;
+        }
+        .philosophy-text p {
+            color: var(--white-60);
+            font-size: 15px;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .halal-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--gold-30);
+            background: var(--gold-10);
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            margin-top: 10px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+        }
+        .stat {
+            border-left: 2px solid var(--gold);
+            padding-left: 22px;
+        }
+        .stat-n {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-l {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white-40);
+        }
+
+        /* ── MENU ── */
+        .menu-section {
+            padding: 130px 60px;
+            background: rgba(0,0,0,0.18);
+        }
+        .menu-header { margin-bottom: 64px; }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            border-bottom: 1px solid var(--white-10);
+            margin-bottom: 64px;
+        }
+        .tab {
+            padding: 15px 30px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--white-40);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all .3s;
+            background: none;
+            border-top: none; border-left: none; border-right: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+        .tab:hover:not(.active) { color: var(--white-60); }
+
+        .panel { display: none; max-width: 860px; margin: 0 auto; animation: fadeUp .4s ease both; }
+        .panel.active { display: block; }
+
+        .promo-bar {
+            background: var(--gold-10);
+            border: 1px solid var(--gold-30);
+            padding: 13px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 44px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--white-10);
+            gap: 50px;
+            transition: border-color .3s;
+        }
+        .item:hover { border-bottom-color: var(--gold-30); }
+        .item:hover .item-name { color: var(--gold); }
+        .item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 7px;
+            transition: color .3s;
+            letter-spacing: .3px;
+        }
+        .item-desc { font-size: 13px; color: var(--white-40); line-height: 1.55; }
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+            padding-top: 3px;
+        }
+
+        /* ── CONTACT ── */
+        .contact-section {
+            padding: 130px 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 60px;
+        }
+        .card {
+            background: var(--white-10);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 44px 28px;
+            transition: all .35s;
+        }
+        .card:hover {
+            border-color: var(--gold-30);
+            background: var(--gold-10);
+            transform: translateY(-5px);
+        }
+        .card-icon { font-size: 30px; margin-bottom: 22px; }
+        .card-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .card p { font-size: 15px; color: var(--white-60); line-height: 1.7; }
+        .card a { color: var(--white-60); text-decoration: none; transition: color .3s; }
+        .card a:hover { color: var(--gold); }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--white-10);
+            padding: 50px 60px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.2);
+            margin-bottom: 12px;
+        }
+        footer p { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.2); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            nav { padding: 18px 24px; }
+            .nav-links { display: none; }
+            .philosophy { grid-template-columns: 1fr; gap: 50px; padding: 80px 24px; }
+            .menu-section { padding: 80px 20px; }
+            .contact-section { padding: 80px 24px; }
+            .cards { grid-template-columns: 1fr; }
+            .tab { padding: 12px 16px; font-size: 10px; }
+            footer { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-logo">O<span>'</span>BK</a>
+    <ul class="nav-links">
+        <li><a href="#philosophy">Notre histoire</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-badge">Paris 11 &nbsp;·&nbsp; Restaurant Halal &nbsp;·&nbsp; 5,0 ★</div>
+    <h1 class="hero-title">O<span class="apos">'</span>BK</h1>
+    <p class="hero-sub">L'art du Burger &amp; du Kebab</p>
+    <div class="hero-ctas">
+        <a href="#menu" class="btn btn-gold">Voir le menu</a>
+        <a href="#contact" class="btn btn-outline">Nous trouver</a>
+    </div>
+    <div class="scroll-hint">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+    <div class="philosophy-text">
+        <p class="section-tag">Notre philosophie</p>
+        <h2 class="section-title" style="margin-bottom:28px;">Le <em>luxe</em><br>accessible</h2>
+        <p>Chez O'BK, chaque création est pensée avec soin. Nous fusionnons la générosité du kebab traditionnel avec la précision du burger moderne pour vous offrir une expérience unique.</p>
+        <p>Des ingrédients sélectionnés — burrata, truffe, fêta, sauce signature — dans un cadre soigné. Parce que la qualité ne devrait jamais être un luxe hors de portée.</p>
+        <div class="halal-tag">✓ &nbsp;100 % Halal</div>
+    </div>
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-n">5,0</div>
+            <div class="stat-l">Note Google</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">22</div>
+            <div class="stat-l">Avis clients</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">+15</div>
+            <div class="stat-l">Créations au menu</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">Paris</div>
+            <div class="stat-l">11ème arrondissement</div>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+    <div class="menu-header text-center">
+        <p class="section-tag">Notre carte</p>
+        <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+        <h2 class="section-title">Le Menu</h2>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="sandwichs">Sandwich Signature</button>
+        <button class="tab" data-tab="bowls">Bowls</button>
+        <button class="tab" data-tab="frites">Frites</button>
+        <button class="tab" data-tab="sides">Sides</button>
+        <button class="tab" data-tab="desserts">Desserts</button>
+    </div>
+
+    <!-- Sandwichs -->
+    <div class="panel active" id="sandwichs">
+        <div class="promo-bar">Menu frite + boisson = +3 €</div>
+        <div class="item">
+            <div><div class="item-name">Doner</div><div class="item-desc">Sauce au choix, viande de kebab, salade, tomate, oignons</div></div>
+            <div class="item-price">7,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Américain</div><div class="item-desc">Sauce signature, viande de kebab, crudités, cornichons, cheddar cheese</div></div>
+            <div class="item-price">8,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Berlinois</div><div class="item-desc">Sauce blanche, viande de kebab, crudités, coleslaw, fêta</div></div>
+            <div class="item-price">8,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Le Piquant</div><div class="item-desc">Sauce spicy, viande de kebab, crudités, jalapeños, cheddar cheese, oignon kebab</div></div>
+            <div class="item-price">8,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Bangkok Thaï</div><div class="item-desc">Sauce spicy, viande de kebab, poivrons sautés, légumes grillés, sauce chili thai, oignons crispy</div></div>
+            <div class="item-price">8,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Truffe</div><div class="item-desc">Sauce blanche, viande de kebab, salade, burrata, truffe, oignons crispy</div></div>
+            <div class="item-price">12,90 €</div>
+        </div>
+    </div>
+
+    <!-- Bowls -->
+    <div class="panel" id="bowls">
+        <div class="item">
+            <div><div class="item-name">Bowl Berlinois</div><div class="item-desc">Salade, frite, viande de kebab poulet croustillant, coleslaw, fêta, crispy oignons</div></div>
+            <div class="item-price">10,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Bowl Chèvre Miel</div><div class="item-desc">Salade, frite, viande de kebab, légumes grillés, fromage de chèvres, miel</div></div>
+            <div class="item-price">10,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Bowl Burratina</div><div class="item-desc">Salade, tomate, crème de balsamique, burrata, pesto</div></div>
+            <div class="item-price">11,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Loaded Fries Kebab</div><div class="item-desc"></div></div>
+            <div class="item-price">7,90 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Krousty Chicken</div><div class="item-desc"></div></div>
+            <div class="item-price">9,00 €</div>
+        </div>
+        <div class="item">
+            <div><div class="item-name">Tacos Kebab</div><div class="item-desc"></div></div>
+            <div class="item-price">7,50 €</div>
+        </div>
+    </div>
+
+    <!-- Frites -->
+    <div class="panel" id="frites">
+        <div class="item"><div><div class="item-name">Frites</div></div><div class="item-price">3,00 €</div></div>
+        <div class="item"><div><div class="item-name">Frites Cheddar</div></div><div class="item-price">3,50 €</div></div>
+        <div class="item"><div><div class="item-name">Frites Cheddar Bacon</div></div><div class="item-price">4,50 €</div></div>
+        <div class="item"><div><div class="item-name">Frites Cheddar Crispy</div></div><div class="item-price">4,00 €</div></div>
+    </div>
+
+    <!-- Sides -->
+    <div class="panel" id="sides">
+        <div class="item"><div><div class="item-name">Mozzarella Sticks</div></div><div class="item-price">2,95 €</div></div>
+        <div class="item"><div><div class="item-name">Chili Cheese</div></div><div class="item-price">2,95 €</div></div>
+        <div class="item"><div><div class="item-name">Nuggets</div></div><div class="item-price">3,50 €</div></div>
+        <div class="item"><div><div class="item-name">Falafel</div></div><div class="item-price">3,50 €</div></div>
+        <div class="item"><div><div class="item-name">Tenders</div></div><div class="item-price">4,95 €</div></div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="panel" id="desserts">
+        <div class="item"><div><div class="item-name">Tiramisu</div></div><div class="item-price">3,50 €</div></div>
+        <div class="item"><div><div class="item-name">Churros Sucre</div></div><div class="item-price">3,00 €</div></div>
+        <div class="item"><div><div class="item-name">Churros Nutella</div></div><div class="item-price">3,00 €</div></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <p class="section-tag">Nous retrouver</p>
+    <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+    <h2 class="section-title">Venez nous voir</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">📍</div>
+            <div class="card-label">Adresse</div>
+            <p>19 Rue Popincourt<br>75011 Paris</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📞</div>
+            <div class="card-label">Téléphone</div>
+            <p><a href="tel:0618435874">06 18 43 58 74</a></p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⭐</div>
+            <div class="card-label">Note Google</div>
+            <p>5,0 / 5<br><span style="font-size:12px;color:rgba(255,255,255,0.3)">22 avis clients</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">O'BK</div>
+    <p>L'art du Burger &amp; du Kebab &nbsp;—&nbsp; Paris 11</p>
+    <p style="margin-top:10px">© 2025 O'BK Restaurant. Tous droits réservés.</p>
+</footer>
+
+<script>
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+</script>
+</body>
+</html>
