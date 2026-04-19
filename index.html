@@ -34,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* ── NAV ── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -66,7 +65,6 @@
         }
         .nav-links a:hover { color: var(--gold); }
 
-        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -171,7 +169,6 @@
             50%      { transform: translateX(-50%) translateY(9px); }
         }
 
-        /* ── DIVIDER ── */
         .divider {
             display: flex;
             align-items: center;
@@ -182,7 +179,6 @@
         .divider-line { flex: 1; height: 1px; background: var(--gold-30); }
         .divider-dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
 
-        /* ── SECTION HEADER ── */
         .section-tag {
             font-size: 10px;
             letter-spacing: 5px;
@@ -199,7 +195,6 @@
         .section-title em { font-style: italic; color: var(--gold); }
         .text-center { text-align: center; }
 
-        /* ── PHILOSOPHY ── */
         .philosophy {
             padding: 130px 60px;
             max-width: 1200px;
@@ -233,10 +228,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 36px;
         }
-        .stat {
-            border-left: 2px solid var(--gold);
-            padding-left: 22px;
-        }
+        .stat { border-left: 2px solid var(--gold); padding-left: 22px; }
         .stat-n {
             font-family: 'Playfair Display', serif;
             font-size: 44px;
@@ -252,11 +244,7 @@
             color: var(--white-40);
         }
 
-        /* ── MENU ── */
-        .menu-section {
-            padding: 130px 60px;
-            background: rgba(0,0,0,0.18);
-        }
+        .menu-section { padding: 130px 60px; background: rgba(0,0,0,0.18); }
         .menu-header { margin-bottom: 64px; }
         .tabs {
             display: flex;
@@ -326,7 +314,6 @@
             padding-top: 3px;
         }
 
-        /* ── CONTACT ── */
         .contact-section {
             padding: 130px 60px;
             max-width: 1000px;
@@ -362,7 +349,6 @@
         .card a { color: var(--white-60); text-decoration: none; transition: color .3s; }
         .card a:hover { color: var(--gold); }
 
-        /* ── FOOTER ── */
         footer {
             border-top: 1px solid var(--white-10);
             padding: 50px 60px;
@@ -378,13 +364,11 @@
         }
         footer p { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.2); }
 
-        /* ── ANIMATIONS ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(28px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             nav { padding: 18px 24px; }
             .nav-links { display: none; }
@@ -399,7 +383,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
     <a href="#" class="nav-logo">O<span>'</span>BK</a>
     <ul class="nav-links">
@@ -409,7 +392,6 @@
     </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
     <div class="hero-glow"></div>
     <div class="hero-badge">Paris 11 &nbsp;·&nbsp; Restaurant Halal &nbsp;·&nbsp; 5,0 ★</div>
@@ -425,7 +407,6 @@
     </div>
 </section>
 
-<!-- PHILOSOPHY -->
 <section class="philosophy" id="philosophy">
     <div class="philosophy-text">
         <p class="section-tag">Notre philosophie</p>
@@ -435,26 +416,13 @@
         <div class="halal-tag">✓ &nbsp;100 % Halal</div>
     </div>
     <div class="stats">
-        <div class="stat">
-            <div class="stat-n">5,0</div>
-            <div class="stat-l">Note Google</div>
-        </div>
-        <div class="stat">
-            <div class="stat-n">22</div>
-            <div class="stat-l">Avis clients</div>
-        </div>
-        <div class="stat">
-            <div class="stat-n">+15</div>
-            <div class="stat-l">Créations au menu</div>
-        </div>
-        <div class="stat">
-            <div class="stat-n">Paris</div>
-            <div class="stat-l">11ème arrondissement</div>
-        </div>
+        <div class="stat"><div class="stat-n">5,0</div><div class="stat-l">Note Google</div></div>
+        <div class="stat"><div class="stat-n">22</div><div class="stat-l">Avis clients</div></div>
+        <div class="stat"><div class="stat-n">+15</div><div class="stat-l">Créations au menu</div></div>
+        <div class="stat"><div class="stat-n">Paris</div><div class="stat-l">11ème arrondissement</div></div>
     </div>
 </section>
 
-<!-- MENU -->
 <section class="menu-section" id="menu">
     <div class="menu-header text-center">
         <p class="section-tag">Notre carte</p>
@@ -470,64 +438,25 @@
         <button class="tab" data-tab="desserts">Desserts</button>
     </div>
 
-    <!-- Sandwichs -->
     <div class="panel active" id="sandwichs">
         <div class="promo-bar">Menu frite + boisson = +3 €</div>
-        <div class="item">
-            <div><div class="item-name">Doner</div><div class="item-desc">Sauce au choix, viande de kebab, salade, tomate, oignons</div></div>
-            <div class="item-price">7,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Américain</div><div class="item-desc">Sauce signature, viande de kebab, crudités, cornichons, cheddar cheese</div></div>
-            <div class="item-price">8,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Berlinois</div><div class="item-desc">Sauce blanche, viande de kebab, crudités, coleslaw, fêta</div></div>
-            <div class="item-price">8,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Le Piquant</div><div class="item-desc">Sauce spicy, viande de kebab, crudités, jalapeños, cheddar cheese, oignon kebab</div></div>
-            <div class="item-price">8,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Bangkok Thaï</div><div class="item-desc">Sauce spicy, viande de kebab, poivrons sautés, légumes grillés, sauce chili thai, oignons crispy</div></div>
-            <div class="item-price">8,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Truffe</div><div class="item-desc">Sauce blanche, viande de kebab, salade, burrata, truffe, oignons crispy</div></div>
-            <div class="item-price">12,90 €</div>
-        </div>
+        <div class="item"><div><div class="item-name">Doner</div><div class="item-desc">Sauce au choix, viande de kebab, salade, tomate, oignons</div></div><div class="item-price">7,90 €</div></div>
+        <div class="item"><div><div class="item-name">Américain</div><div class="item-desc">Sauce signature, viande de kebab, crudités, cornichons, cheddar cheese</div></div><div class="item-price">8,90 €</div></div>
+        <div class="item"><div><div class="item-name">Berlinois</div><div class="item-desc">Sauce blanche, viande de kebab, crudités, coleslaw, fêta</div></div><div class="item-price">8,90 €</div></div>
+        <div class="item"><div><div class="item-name">Le Piquant</div><div class="item-desc">Sauce spicy, viande de kebab, crudités, jalapeños, cheddar cheese, oignon kebab</div></div><div class="item-price">8,90 €</div></div>
+        <div class="item"><div><div class="item-name">Bangkok Thaï</div><div class="item-desc">Sauce spicy, viande de kebab, poivrons sautés, légumes grillés, sauce chili thai, oignons crispy</div></div><div class="item-price">8,90 €</div></div>
+        <div class="item"><div><div class="item-name">Truffe</div><div class="item-desc">Sauce blanche, viande de kebab, salade, burrata, truffe, oignons crispy</div></div><div class="item-price">12,90 €</div></div>
     </div>
 
-    <!-- Bowls -->
     <div class="panel" id="bowls">
-        <div class="item">
-            <div><div class="item-name">Bowl Berlinois</div><div class="item-desc">Salade, frite, viande de kebab poulet croustillant, coleslaw, fêta, crispy oignons</div></div>
-            <div class="item-price">10,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Bowl Chèvre Miel</div><div class="item-desc">Salade, frite, viande de kebab, légumes grillés, fromage de chèvres, miel</div></div>
-            <div class="item-price">10,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Bowl Burratina</div><div class="item-desc">Salade, tomate, crème de balsamique, burrata, pesto</div></div>
-            <div class="item-price">11,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Loaded Fries Kebab</div><div class="item-desc"></div></div>
-            <div class="item-price">7,90 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Krousty Chicken</div><div class="item-desc"></div></div>
-            <div class="item-price">9,00 €</div>
-        </div>
-        <div class="item">
-            <div><div class="item-name">Tacos Kebab</div><div class="item-desc"></div></div>
-            <div class="item-price">7,50 €</div>
-        </div>
+        <div class="item"><div><div class="item-name">Bowl Berlinois</div><div class="item-desc">Salade, frite, viande de kebab poulet croustillant, coleslaw, fêta, crispy oignons</div></div><div class="item-price">10,90 €</div></div>
+        <div class="item"><div><div class="item-name">Bowl Chèvre Miel</div><div class="item-desc">Salade, frite, viande de kebab, légumes grillés, fromage de chèvres, miel</div></div><div class="item-price">10,90 €</div></div>
+        <div class="item"><div><div class="item-name">Bowl Burratina</div><div class="item-desc">Salade, tomate, crème de balsamique, burrata, pesto</div></div><div class="item-price">11,90 €</div></div>
+        <div class="item"><div><div class="item-name">Loaded Fries Kebab</div></div><div class="item-price">7,90 €</div></div>
+        <div class="item"><div><div class="item-name">Krousty Chicken</div></div><div class="item-price">9,00 €</div></div>
+        <div class="item"><div><div class="item-name">Tacos Kebab</div></div><div class="item-price">7,50 €</div></div>
     </div>
 
-    <!-- Frites -->
     <div class="panel" id="frites">
         <div class="item"><div><div class="item-name">Frites</div></div><div class="item-price">3,00 €</div></div>
         <div class="item"><div><div class="item-name">Frites Cheddar</div></div><div class="item-price">3,50 €</div></div>
@@ -535,7 +464,6 @@
         <div class="item"><div><div class="item-name">Frites Cheddar Crispy</div></div><div class="item-price">4,00 €</div></div>
     </div>
 
-    <!-- Sides -->
     <div class="panel" id="sides">
         <div class="item"><div><div class="item-name">Mozzarella Sticks</div></div><div class="item-price">2,95 €</div></div>
         <div class="item"><div><div class="item-name">Chili Cheese</div></div><div class="item-price">2,95 €</div></div>
@@ -544,7 +472,6 @@
         <div class="item"><div><div class="item-name">Tenders</div></div><div class="item-price">4,95 €</div></div>
     </div>
 
-    <!-- Desserts -->
     <div class="panel" id="desserts">
         <div class="item"><div><div class="item-name">Tiramisu</div></div><div class="item-price">3,50 €</div></div>
         <div class="item"><div><div class="item-name">Churros Sucre</div></div><div class="item-price">3,00 €</div></div>
@@ -552,31 +479,17 @@
     </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact-section" id="contact">
     <p class="section-tag">Nous retrouver</p>
     <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
     <h2 class="section-title">Venez nous voir</h2>
     <div class="cards">
-        <div class="card">
-            <div class="card-icon">📍</div>
-            <div class="card-label">Adresse</div>
-            <p>19 Rue Popincourt<br>75011 Paris</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">📞</div>
-            <div class="card-label">Téléphone</div>
-            <p><a href="tel:0618435874">06 18 43 58 74</a></p>
-        </div>
-        <div class="card">
-            <div class="card-icon">⭐</div>
-            <div class="card-label">Note Google</div>
-            <p>5,0 / 5<br><span style="font-size:12px;color:rgba(255,255,255,0.3)">22 avis clients</span></p>
-        </div>
+        <div class="card"><div class="card-icon">📍</div><div class="card-label">Adresse</div><p>19 Rue Popincourt<br>75011 Paris</p></div>
+        <div class="card"><div class="card-icon">📞</div><div class="card-label">Téléphone</div><p><a href="tel:0618435874">06 18 43 58 74</a></p></div>
+        <div class="card"><div class="card-icon">⭐</div><div class="card-label">Note Google</div><p>5,0 / 5<br><span style="font-size:12px;color:rgba(255,255,255,0.3)">22 avis clients</span></p></div>
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-logo">O'BK</div>
     <p>L'art du Burger &amp; du Kebab &nbsp;—&nbsp; Paris 11</p>
@@ -592,7 +505,6 @@
             document.getElementById(tab.dataset.tab).classList.add('active');
         });
     });
-
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             const target = document.querySelector(a.getAttribute('href'));
